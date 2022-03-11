@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    a:link, a:visited {
+  background-color: white;
+  color: black;
+  border: 2px solid green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: green;
+  color: white;
+}
+    .button {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 15px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+    }
+
+    .button:hover {
+        background-color: #3e8e41
+    }
+
+    .button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+    #cargo_table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #cargo_table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #cargo_table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #cargo_table tr:hover {
+        background-color: #ddd;
+    }
+
+    #cargo_table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #cargo_form {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #cargo_form td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #cargo_form tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #cargo_form tr:hover {
+        background-color: #ddd;
+    }
+
+    #cargo_form th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #container_table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #container_table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #container_table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #container_table tr:hover {
+        background-color: #ddd;
+    }
+
+    #container_table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #container_form {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #container_form td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #container_form tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #container_form tr:hover {
+        background-color: #ddd;
+    }
+
+    #container_form th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #container_cargo_table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #container_cargo_table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #container_cargo_table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #container_cargo_table tr:hover {
+        background-color: #ddd;
+    }
+
+    #container_cargo_table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #container_cargo_form {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #container_cargo_form td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #container_cargo_form tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #container_cargo_form tr:hover {
+        background-color: #ddd;
+    }
+
+    #container_cargo_form th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #tracker_cargo_table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #tracker_cargo_table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #tracker_cargo_table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #tracker_cargo_table tr:hover {
+        background-color: #ddd;
+    }
+
+    #tracker_cargo_table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #tracker_cargo_form {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #tracker_cargo_form td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #tracker_cargo_form tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #tracker_cargo_form tr:hover {
+        background-color: #ddd;
+    }
+
+    #tracker_cargo_form th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #tracker_container_table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #tracker_container_table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #tracker_container_table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #tracker_container_table tr:hover {
+        background-color: #ddd;
+    }
+
+    #tracker_container_table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #tracker_container_form {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #tracker_container_form td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #tracker_container_form tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #tracker_container_form tr:hover {
+        background-color: #ddd;
+    }
+
+    #tracker_container_form th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #tracker_table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #tracker_table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #tracker_table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #tracker_table tr:hover {
+        background-color: #ddd;
+    }
+
+    #tracker_table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #tracker_form {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #tracker_form td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #tracker_form tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #tracker_form tr:hover {
+        background-color: #ddd;
+    }
+
+    #tracker_form th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</head>
+<body style="background-color:#d4f3cf">
+<center><a href="/" class="btn btn-primary">Main Page</a></center>
+
+<script>
+    let socket = new WebSocket('ws://localhost:8000/ws/' + {{request.user.id}});
+    console.log(socket)
+    socket.onopen = function(e){
+        //alert('Connection established');
+
+    };
+    socket.onmessage = function(e){
+        //alert('message received')
+        payload = JSON.parse(e['data'])
+        console.log(payload)
+        if(payload['type'] == "user.notify"){ //notif
+            Toastify({text: payload['content'] ,
+                    duration: 6666}).showToast();
+        }
+        else if(payload['type'] == "cargo.notify"){ //cargo tablo guncelle
+            $("#cargo_table_body tr").remove()
+            loadTableCargo(payload['content'])
+            update_dropdown_cargo()
+        }
+        else if(payload['type'] == "container.notify"){ //cargo tablo guncelle
+            $("#container_table_body tr").remove()
+            loadTableContainer(payload['content'])
+            update_dropdown_container()
+        }
+        else if(payload['type'] == "tracker.notify"){ //cargo tablo guncelle
+            $("#tracker_table_body tr").remove()
+            loadTableTracker(payload['content'])
+            const table = document.getElementById("tracker_cargo_table")
+            const table_topic = document.getElementById("tracker_cargo_table_topic")
+            table.style.visibility = "hidden"
+            table_topic.style.visibility = "hidden"
+        }
+        else if(payload['type'] == "contcargo.notify"){ // container cargo tablo guncelle
+            reset_container_cargo_table()
+            loadTableContainerCargo(payload['content'])
+        }
+        else if (payload['type'] == "trackcargo.notify"){
+            if("{{request.user.role}}" != "client"){
+                const table = document.getElementById("tracker_cargo_table")
+                const table_topic = document.getElementById("tracker_cargo_table_topic")
+                table.style.visibility = "hidden"
+                table_topic.style.visibility = "hidden"
+            }
+            reset_tracker_cargo_table()
+            loadTableTrackerCargo(payload['content'])
+        }
+        else if (payload['type'] == "trackcontainer.notify"){
+            if("{{request.user.role}}" != "client"){
+                const table = document.getElementById("tracker_container_table")
+                const table_topic = document.getElementById("tracker_container_table_topic")
+                table.style.visibility = "hidden"
+                table_topic.style.visibility = "hidden"
+            }
+            reset_tracker_container_table()
+            loadTableTrackerContainer(payload['content'])
+        }
+        else{
+            alert("ne olmakta")
+        }
+
+    };
+    socket.onclose= function(e){
+        alert('Connection closed');
+        socket.send("naber")
+    };
+
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<table id="cargo_table"type="table">
+    <h1 id="cargo_table_topic">Cargo List</h1>
+    <thead class="thead-dark">
+    <tr>
+        <th>Cargo ID</th>
+        <th>Cargo Sender Name</th>
+        <th>Cargo Recipient</th>
+        <th>Cargo Recipient Address</th>
+        <th>Container ID</th>
+        <th>Cargo State</th>
+        <th>Cargo Owner</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="cargo_table_body">
+    </tbody>
+</table>
+<br>
+<button class='button' onclick="show_cargo_form()" ;> Show & Hide Cargo Form</button>
+<br>
+<form method="POST" id="cargo_form" action="" align="left" style="visibility: hidden">
+    <h1>Cargo Form</h1>
+    <table border="1" cellspacing="0">
+        {% csrf_token %}
+        {{ cargo_form.as_table }}
+        <tr>
+            <td>&nbsp;</td>
+            <td style="align: right;">
+                <input type="button" id="cargo_form_button_insert" name="insert" value="Insert new cargo" onclick="insertNewCargo();"/>
+                <input type="button" id="cargo_form_button_update" value="Update Cargo"
+                       style="visibility: hidden"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<br>
+<table id="container_table" type="table">
+    <h1 id="container_table_topic">Container List</h1>
+    <thead class="thead-dark">
+    <tr>
+        <th>Container ID</th>
+        <th>Container Description</th>
+        <th>Container Type</th>
+        <th>Container Coordinate-X</th>
+        <th>Container Coordinate-Y</th>
+        <th>Container State</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="container_table_body">
+    </tbody>
+</table>
+
+<br>
+{% if request.user.role == "admin" or request.user.role == "carrier" %}
+<button class='button' onclick="show_container_form()" ;> Show & Hide Container Form</button>
+{% endif %}
+<br>
+<br>
+
+{% if request.user.role == "admin" or request.user.role == "carrier"%}
+<form method="POST" id="container_form" action="" align="left" style="visibility: hidden">
+    <h1>Container Form</h1>
+    <table border="1" cellspacing="0">
+        {% csrf_token %}
+        {{ container_form.as_table }}
+        <tr>
+            <td>&nbsp;</td>
+            <td style="align: right;">
+                {% if request.user.role == "admin"%}
+                <input type="button" id="container_form_button_insert" name="insert" value="Insert new Container"
+                       onclick="create_container();"/>
+                {% endif %}
+
+                <input type="button" id="container_form_button_update" value="Update Container"
+                       style="visibility: hidden"/>
+            </td>
+        </tr>
+    </table>
+</form>
+{% endif %}
+
+<table id="container_cargo_table" style="visibility: hidden" type="table">
+    <h1 id="container_cargo_table_topic" style="visibility: hidden">Contained Cargo List</h1>
+    <thead class="thead-dark">
+    <tr>
+        <th>Cargo ID</th>
+        <th>Cargo Sender Name</th>
+        <th>Cargo Recipient</th>
+        <th>Cargo Recipient Address</th>
+        <th>Cargo State</th>
+        <th>Cargo Owner</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="container_cargo_table_body">
+    </tbody>
+</table>
+<br>
+<form method="POST" id="container_cargo_form" action="" align="left" style="visibility: hidden">
+    <h1>Move Cargo Form</h1>
+    <table border="1" cellspacing="0">
+        {% csrf_token %}
+        {{ move_cargo_form.as_table }}
+        <tr>
+            <td>&nbsp;</td>
+            <td style="align: right;">
+                <input type="button" name="insert" id="container_cargo_form_cid" value="Move a Cargo"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+
+
+<table id="tracker_table">
+    <h1 id="tracker_table_topic">Tracker List</h1>
+    <thead class="thead-dark">
+    <tr>
+        <th>Tracker ID</th>
+        <th>Description</th>
+        <th>Top</th>
+        <th>Left</th>
+        <th>Bottom</th>
+        <th>Right</th>
+        <th>Owner</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="tracker_table_body">
+    </tbody>
+</table>
+<br>
+<button  class='button' onclick="show_tracker_form()" ;> Show & Hide Tracker Form</button>
+<br>
+<form method="POST" id="tracker_form" action="" style="visibility: hidden">
+    <h1>Tracker Form</h1>
+    <table border="1" cellspacing="0">
+        {% csrf_token %}
+        {{ tracker_form.as_table }}
+        <tr>
+            <td>&nbsp;</td>
+            <td style="align: right;">
+                <input type="button" id = "tracker_form_button_insert" name="insert" onclick="create_tracker();" value="Insert new tracker"/>
+                <input type="button" id="tracker_form_button_update" value="Update Tracker"
+                       style="visibility: hidden"/>
+
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+<form method="POST" id="tracker_cargo_form" style="visibility: hidden" action="">
+    <h1>Track Cargo Form</h1>
+    <table border="1" cellspacing="0">
+        {% csrf_token %}
+        {{ tracker_cargo_form.as_table }}
+        <tr>
+            <td>&nbsp;</td>
+            <td style="align: right;">
+                <input type="button" name="insert" id="tracker_cargo_form_tid" value="Track a Cargo"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+<table style="visibility: hidden" id="tracker_cargo_table">
+    <h1 id="tracker_cargo_table_topic" style="visibility: hidden">Tracked Cargo List</h1>
+    <thead class="thead-dark">
+    <tr>
+        <th>Cargo ID</th>
+        <th>Cargo Sender Name</th>
+        <th>Cargo Recipent</th>
+        <th>Cargo Recipent Address</th>
+        <th>Container ID</th>
+        <th>Cargo Coordinate-X</th>
+        <th>Cargo Coordinate-Y</th>
+        <th>Cargo State</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="tracker_cargo_table_body">
+    </tbody>
+</table>
+
+
+<br>
+<form method="POST" id="tracker_container_form" style="visibility: hidden" action="">
+    <h1>Track Container Form</h1>
+    <table border="1" cellspacing="0">
+        {% csrf_token %}
+        {{ tracker_container_form.as_table }}
+        <tr>
+            <td>&nbsp;</td>
+            <td style="align: right;">
+                <input type="button" name="insert" id="tracker_container_form_tid" value="Track a Container"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+<table style="visibility: hidden" id="tracker_container_table">
+    <h1 id="tracker_container_table_topic" style="visibility: hidden">Tracked Container List</h1>
+    <thead class="thead-dark">
+    <tr>
+        <th>Container ID</th>
+        <th>Container Description</th>
+        <th>Container Type</th>
+        <th>Container Coordinate-X</th>
+        <th>Container Coordinate-Y</th>
+        <th>Container State</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="tracker_container_table_body">
+    </tbody>
+</table>
+<script>
+    function deneme(tid) {
+
+    }
+
+    function reset_cargo_form() {
+        document.getElementById("cargo_form").reset();
+    }
+
+    function reset_tracker_form() {
+        document.getElementById("tracker_form").reset();
+    }
+
+    function reset_container_form() {
+        document.getElementById("container_form").reset();
+    }
+
+    function reset_tracker_cargo_form() {
+        document.getElementById("tracker_cargo_form").reset();
+    }
+
+    function reset_tracker_cargo_table() {
+        $("#tracker_cargo_table_body tr").remove();
+    }
+
+    function reset_container_cargo_table() {
+        $("#container_cargo_table_body tr").remove();
+    }
+
+    function reset_container_cargo_form() {
+        document.getElementById("container_cargo_form").reset();
+    }
+
+    function reset_tracker_container_table() {
+        $("#tracker_container_table_body tr").remove();
+    }
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function insertNewCargo() {
+        const sender_name = $("#id_sender_name").val();
+        const recip_name = $("#id_recip_name").val();
+        const recip_address = $("#id_recip_address").val();
+        const cont = $("#id_cont").val();
+        const owner = $("#id_owner").val();
+        reset_cargo_form()
+        data = {
+            'sender_name': sender_name,
+            'recip_name': recip_name,
+            'recip_address': recip_address,
+            'cont': cont,
+            'owner': owner
+        }
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: 'add_cargo',
+            data: data,
+            success: function (response) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'get_updated_cargo_form',
+                    success: function (response) {
+                        console.log($("#id_cargoID"))
+                        console.log(response)
+                        $("#id_cargoID").html(response)
+                        console.log($("#id_cargoID"))
+                    }
+                })
+            }
+        })
+    }
+
+    function add_tracker_cargo(tid) {
+        const cargoID = $("#id_cargoID").val();
+        reset_tracker_cargo_form()
+        data = {'cargoID': cargoID}
+        console.log(data)
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: 'create_tracker_cargo/' + tid,
+            data: data,
+            success: function (response) {
+                loadTableTrackerCargo(response.data)
+            }
+        })
+    }
+
+    function create_tracker() {
+        const tracker_description = $("#id_tracker_description").val();
+        const top = $("#id_top").val();
+        const left = $("#id_left").val();
+        const bottom = $("#id_bottom").val();
+        const right = $("#id_right").val();
+        const tracker_owner = $("#id_tracker_owner").val();
+        reset_tracker_form()
+        data = {'tracker_description': tracker_description, 'top': top, 'left': left, 'bottom': bottom, 'right': right, 'tracker_owner': tracker_owner}
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: 'add_tracker',
+            data: data,
+            success: function (response) {
+                loadTableTracker(response.data)
+            }
+        })
+    }
+
+    function create_container() {
+        const description = $("#id_description").val();
+        const type = $("#id_type").val();
+        const location_x = $("#id_location_x").val();
+        const location_y = $("#id_location_y").val();
+        reset_container_form()
+        data = {'description': description, 'type': type, 'location_x': location_x, 'location_y': location_y}
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: 'add_container',
+            data: data,
+            success: function (response) {
+                loadTableContainer(response.data)
+                $.ajax({
+                    type: 'GET',
+                    url: 'get_updated_container_form',
+                    data: data,
+                    success: function (response) {
+                        $("#id_cid").html(response)
+                        $("#id_move_cid").html(response)
+                    }
+                })
+            }
+        })
+    }
+
+    function update_container_fill(cid, description, type, location_x, location_y){
+        $("#id_description").val(description);
+        $("#id_type").val(type);
+        $("#id_location_x").val(location_x);
+        $("#id_location_y").val(location_y);
+
+        document.getElementById("container_form_button_update").style.visibility = "visible"
+        {% if request.user.role == "admin"%}
+            document.getElementById("container_form_button_insert").style.visibility = "hidden"
+        {% endif %}
+
+        show_container_form()
+        show_container_form()
+        document.getElementById("container_form_button_update").onclick = function () {
+            const description = $("#id_description").val();
+            const type = $("#id_type").val();
+            const location_x = $("#id_location_x").val();
+            const location_y = $("#id_location_y").val();
+            reset_container_cargo_form()
+            document.getElementById("container_form_button_update").style.visibility = "hidden"
+            {% if request.user.role == "admin"%}
+            document.getElementById("container_form_button_insert").style.visibility = "visible"
+            {% endif %}
+            data = {'cid': cid, 'description': description, 'type': type, 'location_x': location_x, 'location_y': location_y}
+
+            $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+            });
+            $.ajax({
+                type: 'POST',
+                url: 'add_container',
+                data: data,
+                success: function (response) {
+                    loadTableContainer(response.data)
+                    reset_container_form()
+                }
+            })
+            return false;
+        };
+
+    }
+
+    function update_tracker_fill(tid, tracker_description, top, left, bottom, right){
+        console.log($("#id_tracker_description").val())
+        $("#id_tracker_description").val(tracker_description);
+        $("#id_top").val(top);
+        $("#id_left").val(left);
+        $("#id_bottom").val(bottom);
+        $("#id_right").val(right);
+        document.getElementById("tracker_form_button_update").style.visibility = "visible"
+        document.getElementById("tracker_form_button_insert").style.visibility = "hidden"
+        show_tracker_form()
+        show_tracker_form()
+        document.getElementById("tracker_form_button_update").onclick = function () {
+            const tracker_description = $("#id_tracker_description").val();
+            const top = $("#id_top").val();
+            const left = $("#id_left").val();
+            const bottom = $("#id_bottom").val();
+            const right = $("#id_right").val();
+            reset_tracker_form()
+            document.getElementById("tracker_form_button_update").style.visibility = "hidden"
+            document.getElementById("tracker_form_button_insert").style.visibility = "visible"
+            data = {'tid': tid, 'tracker_description': tracker_description, 'top': top, 'left': left, 'bottom': bottom, 'right': right}
+            $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+            });
+            $.ajax({
+                type: 'POST',
+                url: 'add_tracker',
+                data: data,
+                success: function (response) {
+                    console.log(response.data)
+                    loadTableTracker(response.data)
+                }
+            })
+            return false;
+        };
+
+    }
+
+    function update_cargo_fill(id, sender_name, recip_name, recip_address, cont, owner_id){
+        $("#id_sender_name").val(sender_name);
+        $("#id_recip_name").val(recip_name);
+        $("#id_recip_address").val(recip_address);
+        $("#id_cont").val(cont);
+        $("#id_owner").val(owner_id);
+        document.getElementById("cargo_form_button_update").style.visibility = "visible"
+        document.getElementById("cargo_form_button_insert").style.visibility = "hidden"
+        show_cargo_form()
+        show_cargo_form()
+        document.getElementById("cargo_form_button_update").onclick = function () {
+            const sender_name = $("#id_sender_name").val();
+            const recip_name = $("#id_recip_name").val();
+            const recip_address = $("#id_recip_address").val();
+            const cont = $("#id_cont").val();
+            const owner = $("#id_owner").val();
+            reset_cargo_form()
+            document.getElementById("cargo_form_button_update").style.visibility = "hidden"
+            document.getElementById("cargo_form_button_insert").style.visibility = "visible"
+            data = {'id': id, 'sender_name': sender_name, 'recip_name': recip_name, 'recip_address': recip_address, 'cont': cont, 'owner': owner}
+            $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+            });
+            $.ajax({
+                type: 'POST',
+                url: 'add_cargo',
+                data: data,
+                success: function (response) {
+                    loadTableCargo(response.data)
+                }
+            })
+            return false;
+        };
+
+    }
+
+    function loadTableCargo(items) {
+        const table = document.getElementById("cargo_table_body");
+        if (items != undefined){
+            items.forEach(item => {
+                let row = table.insertRow();
+                let cargo_id = row.insertCell(0);
+                cargo_id.innerHTML = item.cargo_id;
+                let sender_name = row.insertCell(1);
+                sender_name.innerHTML = item.sender_name;
+                let recip_name = row.insertCell(2);
+                recip_name.innerHTML = item.recip_name;
+                let recip_address = row.insertCell(3);
+                recip_address.innerHTML = item.recip_address;
+                let container_id = row.insertCell(4);
+                container_id.innerHTML = item.container_id;
+                let cargo_state = row.insertCell(5);
+                cargo_state.innerHTML = item.cargo_state;
+                let owner = row.insertCell(6);
+                owner.innerHTML = item.owner;
+                if (item.cargo_state != "Delivered" && item.container_type == "Front-Office") {
+                    let actions = row.insertCell(7);
+                    actions.innerHTML = actions.innerHTML = "<button class='button'style='margin:5px;' onclick='delete_cargo(" + item.cargo_id + ")'>Delete Cargo</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='update_cargo_fill(" + item.cargo_id +",\"" + item.sender_name + "\",\"" + item.recip_name + "\",\"" + item.recip_address + "\"," + item.container_id  + "," + item.owner_id+")'>Update Cargo</button"+ "<br>" +
+                        "<button class='button'style='margin:5px;' onclick='unload_cargo(" + item.cargo_id + ")'>Unload Cargo</button"
+                }
+                else if (item.cargo_state != "Delivered"){
+                    let actions = row.insertCell(7);
+                    actions.innerHTML = actions.innerHTML = "<button class='button'style='margin:5px;' onclick='delete_cargo(" + item.cargo_id + ")'>Delete Cargo</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='update_cargo_fill(" + item.cargo_id +",\"" + item.sender_name + "\",\"" + item.recip_name + "\",\"" + item.recip_address + "\"," + item.container_id + "," + item.owner_id + ")'>Update Cargo</button"
+                }
+                else {
+                    let actions = row.insertCell(7);
+                    actions.innerHTML = "<a class='button' href= '/delete_cargo/" + item.cargo_id + " '>Delete</a>"
+                    actions.innerHTML = "<button class='button' style='margin:5px;' onclick='delete_cargo(" + item.cargo_id + ")'>Delete Cargo</button"
+                }
+            });
+        }
+    }
+
+    function loadTableContainer(items) {
+        const table = document.getElementById("container_table_body");
+        if (items != undefined){
+            items.forEach(item => {
+                let row = table.insertRow();
+                let cid = row.insertCell(0);
+                cid.innerHTML = item.cid;
+                let description = row.insertCell(1);
+                description.innerHTML = item.description;
+                let type = row.insertCell(2);
+                type.innerHTML = item.type;
+                let location_x = row.insertCell(3);
+                location_x.innerHTML = item.location_x;
+                let location_y = row.insertCell(4);
+                location_y.innerHTML = item.location_y;
+                let state = row.insertCell(5);
+                state.innerHTML = item.state;
+                let actions = row.insertCell(6);
+                {% if request.user.role == "admin" %}
+                    actions.innerHTML = "<button class='button'style='margin:5px;' onclick='contain_cargo(" + item.cid + ")'>Contained Cargos</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='delete_container(" + item.cid + ")'>Delete</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='update_container_fill(" + item.cid +",\"" + item.description + "\",\"" + item.type + "\"," + item.location_x + "," + item.location_y +")'>Update Container</button"
+                {% elif request.user.role == "carrier" %}
+                    actions.innerHTML = "<button class='button'style='margin:5px;' onclick='contain_cargo(" + item.cid + ")'>Contained Cargos</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='update_container_fill(" + item.cid +",\"" + item.description + "\",\"" + item.type + "\"," + item.location_x + "," + item.location_y +")'>Update Container</button"
+                {% else %}
+                    actions.innerHTML = "<button class='button'style='margin:5px;' onclick='contain_cargo(" + item.cid + ")'>Contained Cargos</button"
+                {% endif %}
+            });
+        }
+
+    }
+
+    function loadTableTracker(items) {
+        const table = document.getElementById("tracker_table_body");
+        if (items != undefined){
+            items.forEach(item => {
+            let row = table.insertRow();
+            let tid = row.insertCell(0);
+            tid.innerHTML = item.tid;
+            let tracker_description = row.insertCell(1);
+            tracker_description.innerHTML = item.tracker_description;
+            let top = row.insertCell(2);
+            top.innerHTML = item.top;
+            let left = row.insertCell(3);
+            left.innerHTML = item.left;
+            let bottom = row.insertCell(4);
+            bottom.innerHTML = item.bottom;
+            let right = row.insertCell(5);
+            right.innerHTML = item.right;
+            let tracker_owner = row.insertCell(6);
+            tracker_owner.innerHTML = item.tracker_owner;
+            if (item.role == "carrier") {
+                let actions = row.insertCell(7);
+                actions.innerHTML = actions.innerHTML = "<button class='button'style='margin:5px;' onclick='track_new_container(" + item.tid + ")'>Track a Container</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='track_container(" + item.tid + ")'>Tracked Containers</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='delete_tracker(" + item.tid + ")'>Delete Tracker</button"  + "<br>" + "<button class='button'style='margin:5px;' onclick='update_tracker_fill(" + item.tid +",\"" + item.tracker_description + "\"," + item.top + "," + item.left + "," + item.bottom + "," + item.right +")'>Update Tracker</button"
+            } else if (item.role == "admin") {
+                let actions = row.insertCell(7);
+                actions.innerHTML = actions.innerHTML = "<button class='button'style='margin:5px;' onclick='track_new_cargo(" + item.tid + ")'>Track a Cargo</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='track_cargo(" + item.tid + ")'>Tracked Cargos</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='track_new_container(" + item.tid + ")'>Track a Container</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='track_container(" + item.tid + ")'>Tracked Containers</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='delete_tracker(" + item.tid + ")'>Delete Tracker</button"  + "<br>" + "<button class='button'style='margin:5px;' onclick='update_tracker_fill(" + item.tid +",\"" + item.tracker_description + "\"," + item.top + "," + item.left + "," + item.bottom + "," + item.right +")'>Update Tracker</button"
+            } else if (item.role == "staff") {
+                let actions = row.insertCell(7);
+                actions.innerHTML = actions.innerHTML = "<button class='button'style='margin:5px;' onclick='track_new_cargo(" + item.tid + ")'>Track a Cargo</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='track_cargo(" + item.tid + ")'>Tracked Cargos</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='delete_tracker(" + item.tid + ")'>Delete Tracker</button"  + "<br>" + "<button class='button'style='margin:5px;' onclick='update_tracker_fill(" + item.tid +",\"" + item.tracker_description + "\"," + item.top + "," + item.left + "," + item.bottom + "," + item.right +")'>Update Tracker</button"
+            } else if (item.role == "client") {
+                let actions = row.insertCell(7);
+                actions.innerHTML = actions.innerHTML = "<button class='button'style='margin:5px;' onclick='track_new_cargo(" + item.tid + ")'>Track a Cargo</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='track_cargo(" + item.tid + ")'>Tracked Cargos</button" + "<br>" + "<button class='button'style='margin:5px;' onclick='delete_tracker(" + item.tid + ")'>Delete Tracker</button"  + "<br>" + "<button class='button'style='margin:5px;' onclick='update_tracker_fill(" + item.tid +",\"" + item.tracker_description + "\"," + item.top + "," + item.left + "," + item.bottom + "," + item.right +")'>Update Tracker</button"
+            }
+        });
+        }
+
+    }
+
+    function loadTableTrackerCargo(items) {
+        const table = document.getElementById("tracker_cargo_table_body");
+        if (items != undefined){
+            items.forEach(item => {
+            let row = table.insertRow();
+            let cargo_id = row.insertCell(0);
+            cargo_id.innerHTML = item.cargo_id;
+            let sender_name = row.insertCell(1);
+            sender_name.innerHTML = item.sender_name;
+            let recip_name = row.insertCell(2);
+            recip_name.innerHTML = item.recip_name;
+            let recip_address = row.insertCell(3);
+            recip_address.innerHTML = item.recip_address;
+            let container_id = row.insertCell(4);
+            container_id.innerHTML = item.container_id;
+            let location_x = row.insertCell(5);
+            location_x.innerHTML = item.location_x;
+            let location_y = row.insertCell(6);
+            location_y.innerHTML = item.location_y;
+            let cargo_state = row.insertCell(7);
+            cargo_state.innerHTML = item.cargo_state;
+            let actions = row.insertCell(8);
+            actions.innerHTML = "<button class='button' style='margin:5px;' onclick='untrack_cargo(" + item.tid + "," + item.cargo_id + ")'>Untrack Cargo</button"
+
+        });
+        }
+    }
+
+    function loadTableContainerCargo(items) {
+        const table = document.getElementById("container_cargo_table_body");
+        if (items != undefined){
+            items.forEach(item => {
+            let row = table.insertRow();
+            let cargo_id = row.insertCell(0);
+            cargo_id.innerHTML = item.cargo_id;
+            let sender_name = row.insertCell(1);
+            sender_name.innerHTML = item.sender_name;
+            let recip_name = row.insertCell(2);
+            recip_name.innerHTML = item.recip_name;
+            let recip_address = row.insertCell(3);
+            recip_address.innerHTML = item.recip_address;
+            let cargo_state = row.insertCell(4);
+            cargo_state.innerHTML = item.cargo_state;
+            let owner = row.insertCell(5);
+            owner.innerHTML = item.owner;
+            {% if request.user.role == "admin" or request.user.role == "carrier"%}
+                let actions = row.insertCell(6);
+                actions.innerHTML = "<button class='button' style='margin:5px;' onclick='move_cargo(" + item.cargo_id + ")'>Move Cargo</button"
+            {% endif %}
+
+
+        });
+        }
+    }
+
+    function loadTableTrackerContainer(items) {
+        const table = document.getElementById("tracker_container_table_body");
+        if (items != undefined) {
+            items.forEach(item => {
+            let row = table.insertRow();
+            let cid = row.insertCell(0);
+            cid.innerHTML = item.cid;
+            let description = row.insertCell(1);
+            description.innerHTML = item.description;
+            let type = row.insertCell(2);
+            type.innerHTML = item.type;
+            let location_x = row.insertCell(3);
+            location_x.innerHTML = item.location_x;
+            let location_y = row.insertCell(4);
+            location_y.innerHTML = item.location_y;
+            let state = row.insertCell(5);
+            state.innerHTML = item.state;
+            let actions = row.insertCell(6);
+            actions.innerHTML = "<button class='button' style='margin:5px;' onclick='untrack_container(" + item.tid + "," + item.cid + ")'>Untrack Container</button"
+
+        });
+        }
+    }
+
+    function delete_cargo(id) {
+        $.ajax({
+            type: 'GET',
+            url: 'delete_cargo/' + id,
+            success: function (response) {
+                /*const table = document.getElementById("cargo_table_body");
+                var rowCount = table.rows.length;
+                for (var i = 0; i < rowCount; i++) {
+                    table.deleteRow(0);
+                }
+                loadTableCargo(response.data)*/
+                $.ajax({
+                    type: 'GET',
+                    url: 'get_updated_cargo_form',
+                    success: function (response) {
+                        console.log($("#id_cargoID"))
+                        console.log(response)
+                        $("#id_cargoID").html(response)
+                        console.log($("#id_cargoID"))
+                    }
+                })
+            }
+        })
+    }
+
+    function delete_container(cid) {
+        $.ajax({
+            type: 'GET',
+            url: 'delete_container/' + cid,
+            success: function (response) {
+                show_container_cargo_table()
+                /*const table = document.getElementById("container_table_body");
+                var rowCount = table.rows.length;
+                for (var i = 0; i < rowCount; i++) {
+                    table.deleteRow(0);
+                }
+                loadTableContainer(response.data)*/
+
+            }
+        })
+    }
+
+    function delete_tracker(tid) {
+        $.ajax({
+            type: 'GET',
+            url: 'delete_tracker/' + tid,
+            success: function (response) {
+                const table = document.getElementById("tracker_table_body");
+                var rowCount = table.rows.length;
+                for (var i = 0; i < rowCount; i++) {
+                    table.deleteRow(0);
+                }
+                loadTableTracker(response.data)
+            }
+        })
+    }
+
+    function unload_cargo(id) {
+        $.ajax({
+            type: 'GET',
+            url: 'unload_cargo/' + id,
+            success: function (response) {
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'get_updated_cargo_form',
+                    success: function (response) {
+                        console.log($("#id_cargoID"))
+                        console.log(response)
+                        $("#id_cargoID").html(response)
+                        console.log($("#id_cargoID"))
+                    }
+                })
+            }
+        })
+    }
+
+    function untrack_cargo(tid, id) {
+        $.ajax({
+            type: 'GET',
+            url: 'delete_tracker_cargo/' + tid + "/" + id,
+            success: function (response) {
+                const table = document.getElementById("tracker_cargo_table_body");
+                var rowCount = table.rows.length;
+                for (var i = 0; i < rowCount; i++) {
+                    table.deleteRow(0);
+                }
+                console.log(response.data)
+                loadTableTrackerCargo(response.data)
+            }
+        })
+
+    }
+
+    function untrack_container(tid, cid) {
+        $.ajax({
+            type: 'GET',
+            url: 'delete_tracker_container/' + tid + "/" + cid,
+            success: function (response) {
+                const table = document.getElementById("tracker_container_table_body");
+                var rowCount = table.rows.length;
+                for (var i = 0; i < rowCount; i++) {
+                    table.deleteRow(0);
+                }
+                console.log(response.data)
+                loadTableTrackerContainer(response.data)
+            }
+        })
+    }
+
+    function insert_cargo() {
+        const form = new FormData(document.getElementById('cargo_table'))
+        console.log(form)
+        $.ajax({
+            type: 'POST',
+            url: 'add_cargo',
+            data: form.dat,
+            success: function (response) {
+                const table = document.getElementById("cargo_table_body");
+                loadTableCargo(response.data)
+
+            }
+        })
+    }
+
+    function show_cargo_table() {
+        const table = document.getElementById("cargo_table")
+        const table_topic = document.getElementById("cargo_table_topic")
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+            table_topic.style.visibility = "visible"
+        } else {
+            table.style.visibility = "hidden"
+            table_topic.style.visibility = "hidden"
+        }
+    }
+
+    function show_cargo_form() {
+        const table = document.getElementById("cargo_form")
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+        } else {
+            table.style.visibility = "hidden"
+        }
+    }
+
+    function show_container_table() {
+        const table = document.getElementById("container_table")
+        const table_topic = document.getElementById("container_table_topic")
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+            table_topic.style.visibility = "visible"
+        } else {
+            table.style.visibility = "hidden"
+            table_topic.style.visibility = "hidden"
+        }
+    }
+
+    function show_container_cargo_table() {
+        const table = document.getElementById("container_cargo_table")
+        const table_topic = document.getElementById("container_cargo_table_topic")
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+            table_topic.style.visibility = "visible"
+        }
+    }
+
+    function show_container_cargo_form(cargoID) {
+        const form = document.getElementById("container_cargo_form")
+        document.getElementById("container_cargo_form_cid").onclick = function () {
+            const move_cid = $("#id_move_cid").val();
+            reset_container_cargo_form()
+            data = {'move_cid': move_cid}
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: 'move_cargo/' + cargoID,
+                data: data,
+                success: function (response) {
+                    const table = document.getElementById("container_cargo_table")
+                    table.deleteRow(-1)
+                    if (form.style.visibility == "hidden") {
+                        form.style.visibility = "visible"
+                    } else {
+                        form.style.visibility = "hidden"
+                    }
+                }
+            })
+            return false;
+        };
+        if (form.style.visibility == "hidden") {
+            form.style.visibility = "visible"
+        } else {
+            form.style.visibility = "hidden"
+        }
+    }
+
+    function show_container_form() {
+        const table = document.getElementById("container_form")
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+        } else {
+            table.style.visibility = "hidden"
+        }
+    }
+
+    function show_tracker_table() {
+        const table = document.getElementById("tracker_table")
+        const table_topic = document.getElementById("tracker_table_topic")
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+            table_topic.style.visibility = "visible"
+        } else {
+            table.style.visibility = "hidden"
+            table_topic.style.visibility = "hidden"
+        }
+    }
+
+    function show_tracker_form() {
+        const table = document.getElementById("tracker_form")
+
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+        } else {
+            table.style.visibility = "hidden"
+        }
+    }
+
+    function show_tracker_cargo_form(tid) {
+        const table = document.getElementById("tracker_cargo_form")
+        document.getElementById("tracker_cargo_form_tid").onclick = function () {
+            const cargoID = $("#id_cargoID").val();
+            reset_tracker_cargo_form()
+            data = {'cargoID': cargoID}
+            console.log(data)
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: 'create_tracker_cargo/' + tid,
+                data: data,
+                success: function (response) {
+                    {#loadTableTrackerCargo(response.data)#}
+                    if (table.style.visibility == "hidden") {
+                        table.style.visibility = "visible"
+                    } else {
+                        table.style.visibility = "hidden"
+                    }
+                }
+            })
+            return false;
+        };
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+        } else {
+            table.style.visibility = "hidden"
+        }
+    }
+
+    function show_tracker_container_form(tid) {
+        const table = document.getElementById("tracker_container_form")
+        document.getElementById("tracker_container_form_tid").onclick = function () {
+            const cid = $("#id_cid").val();
+            reset_tracker_cargo_form()
+            data = {'cid': cid}
+            console.log(data)
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: 'create_tracker_container/' + tid,
+                data: data,
+                success: function (response) {
+                    loadTableTrackerContainer(response.data)
+                    if (table.style.visibility == "hidden") {
+                        table.style.visibility = "visible"
+                    } else {
+                        table.style.visibility = "hidden"
+                    }
+                }
+            })
+            return false;
+        };
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+        } else {
+            table.style.visibility = "hidden"
+        }
+    }
+
+    function show_tracker_cargo_table() {
+        const table = document.getElementById("tracker_cargo_table")
+        const table_topic = document.getElementById("tracker_cargo_table_topic")
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+            table_topic.style.visibility = "visible"
+
+        }
+    }
+
+    function show_tracker_container_table() {
+        const table = document.getElementById("tracker_container_table")
+        const table_topic = document.getElementById("tracker_container_table_topic")
+        if (table.style.visibility == "hidden") {
+            table.style.visibility = "visible"
+            table_topic.style.visibility = "visible"
+        }
+    }
+
+    function track_cargo(tid) {
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        $.ajax({
+            type: 'GET',
+            url: 'new_tracker_cargo/' + tid,
+            success: function (response) {
+                console.log(response.data)
+                reset_tracker_cargo_table()
+                loadTableTrackerCargo(response.data)
+                show_tracker_cargo_table()
+                show_tracker_cargo_table()
+            },
+            error: function (error) {
+                console.log('error', error)
+            }
+        })
+    }
+
+    function contain_cargo(cid) {
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        $.ajax({
+            type: 'GET',
+            url: 'contained_cargos/' + cid,
+            success: function (response) {
+                reset_container_cargo_table()
+                loadTableContainerCargo(response.data)
+                show_container_cargo_table()
+            },
+            error: function (error) {
+                console.log('error', error)
+            }
+        })
+    }
+
+    function move_cargo(id) {
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        show_container_cargo_form(id)
+    }
+
+    function track_container(tid) {
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        $.ajax({
+            type: 'GET',
+            url: 'new_tracker_container/' + tid,
+            success: function (response) {
+                reset_tracker_container_table()
+                loadTableTrackerContainer(response.data)
+                show_tracker_container_table()
+            },
+            error: function (error) {
+                console.log('error', error)
+            }
+        })
+    }
+
+    function track_new_cargo(tid) {
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        show_tracker_cargo_form(tid)
+
+    }
+
+    function track_new_container(tid) {
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        });
+        show_tracker_container_form(tid)
+    }
+
+    function update_dropdown_cargo(){
+        $.ajax({
+            type: 'GET',
+            url: 'get_updated_cargo_form',
+            success: function (response) {
+                $("#id_cargoID").html(response)
+            }
+        })
+    }
+
+    function update_dropdown_container(){
+        $.ajax({
+            type: 'GET',
+            url: 'get_updated_container_form',
+            success: function (response) {
+                $("#id_cid").html(response)
+                $("#id_move_cid").html(response)
+                $("#id_cont").html(response)
+            }
+        })
+    }
+
+    $.ajax({
+        type: 'GET',
+        url: 'new_deneme',
+        success: function (response) {
+            loadTableCargo(response.data)
+        },
+        error: function (error) {
+            console.log('error', error)
+        }
+    })
+    $.ajax({
+        type: 'GET',
+        url: 'new_tracker',
+        success: function (response) {
+            loadTableTracker(response.data)
+        },
+        error: function (error) {
+            console.log('error', error)
+        }
+    })
+    $.ajax({
+        type: 'GET',
+        url: 'get_containers',
+        success: function (response) {
+            loadTableContainer(response.data)
+        },
+        error: function (error) {
+            console.log('error', error)
+        }
+    })
+
+</script>
+
+</body>
+</html>

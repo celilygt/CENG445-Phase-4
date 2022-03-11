@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Container Records</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<table style="width:100%">
+    <thead class="thead-dark">
+    <tr>
+        <th>Container ID</th>
+        <th>Container Description</th>
+        <th>Container Type</th>
+        <th>Container Coordinate-X</th>
+        <th>Container Coordinate-Y</th>
+        <th>Container State</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for container in containers %}
+    <tr>
+        <td>{{ container.cid }}</td>
+        <td>{{ container.description }}</td>
+        <td>{{ container.type }}</td>
+        <td>{{ container.location_x }}</td>
+        <td>{{ container.location_y }}</td>
+        <td>{{ container.state }}</td>
+        <td>
+            {% if request.user.role == "admin" %}
+            <a href="/edit_container/{{ container.cid }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+            <a href="/delete_container/{{ container.cid }}">Delete</a>
+            {% endif %}
+            {% if container.type != "Front-Office" %}
+            <a href="/reposition/{{container.cid}}"> Reposition </a>
+            {% endif %}
+            <a href="/view_cargo/{{container.cid}}"> View Cargos</a>
+            <!--<a href="/view_cargo/{{container.cid}}">View Container Items</a> -->
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<center><button onClick="window.location.reload();">Refresh</button></center><br>
+<center><a href="/create_container" class="btn btn-primary">Add New Container</a></center>
+<center><a href="/" class="btn btn-primary">Main Page</a></center>
+</body>
+</html>

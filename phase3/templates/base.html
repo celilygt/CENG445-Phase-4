@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+  background-color:#d4f3cf
+}
+
+h1 {
+  color: #000000;
+  text-align: center;
+    font-family: Calibri;
+}
+a:link, a:visited {
+  background-color: white;
+  color: black;
+  border: 2px solid green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: green;
+  color: white;
+}
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Cargo Simulation</title>
+</head>
+<body style="text-align: center">
+    {% if request.user.is_authenticated %}
+        <h1> Welcome to Cargo Simulation: {{ request.user }} </h1><br>
+        <h1>User Role: {{request.user.role}} </h1><br>
+        <a href="/accounts/logout?next=/">Logout</a> <br> <br> <br>
+    {% else %}
+        <a href="/create_user" class="btn btn-primary"> Register </a><br> <br> <br>
+        <a href="/accounts/login/?next=/">Login</a> <br> <br> <br>
+    {% endif %}
+    {% if request.user.role == "admin" %}
+    <a href="/user_list" class="btn btn-primary"> User Management</a><br><br> <br>
+    {% endif %}
+    <a href="/dashboard" class="btn btn-primary">Dashboard</a> <br>
+
+</body>
+</html>

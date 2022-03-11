@@ -1,0 +1,4 @@
+<option value="">Select a Container</option>
+{% for container in containers %}
+<option value="{{ container.cid }}">{{ container.description }}</option>
+{% endfor %}

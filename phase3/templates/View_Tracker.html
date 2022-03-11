@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Cargo Records</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<center><h1> Tracked Area: X: [{{ x_min }} , {{ x_max }}] Y: [{{ y_min }} , {{ y_max }}]</h1></center>
+<br>
+<br>
+{% if role == "admin" or role == "staff" or role == "client"%}
+
+    <center><h1> Tracked Cargos </h1></center>
+    <br>
+        <center><a href="/add_tracker_cargo/{{ tid }}" class="btn btn-primary">Track a Cargo</a></center><br>
+<table style="width:100%">
+    <thead class="thead-dark">
+    <tr>
+        <th>Cargo ID</th>
+        <th>Cargo Sender Name</th>
+        <th>Cargo Recipent</th>
+        <th>Cargo Recipent Address</th>
+        <th>Container ID</th>
+        <th>Cargo Coordinate-X</th>
+        <th>Cargo Coordinate-Y</th>
+        <th>Cargo State</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for cargo in cargos %}
+    <tr>
+        <td>{{ cargo.id }}</td>
+        <td>{{ cargo.sender_name }}</td>
+        <td>{{ cargo.recip_name }}</td>
+        <td>{{ cargo.recip_address }}</td>
+        <td>{{ cargo.Container.cid }}</td>
+        <td>{{ cargo.Container.location_x }}</td>
+        <td>{{ cargo.Container.location_y }}</td>
+        <td>{{ cargo.state }}</td>
+        <td>
+            <a href="/delete_tracker_cargo/{{ tid }}/{{ cargo.id }}">Untrack</a>
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+{% endif %}
+{% if role == "admin" or role == "carrier"%}
+
+    <center><h1> Tracked Containers </h1></center>
+    <br>
+    <center><a href="/add_tracker_container/{{ tid }}" class="btn btn-primary">Track a Container</a></center><br>
+
+
+<table style="width:100%">
+    <thead class="thead-dark">
+    <tr>
+        <th>Container ID</th>
+        <th>Container Description</th>
+        <th>Container Type</th>
+        <th>Container Coordinate-X</th>
+        <th>Container Coordinate-Y</th>
+        <th>Container State</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for container in containers %}
+    <tr>
+        <td>{{ container.cid }}</td>
+        <td>{{ container.description }}</td>
+        <td>{{ container.type }}</td>
+        <td>{{ container.location_x }}</td>
+        <td>{{ container.location_y }}</td>
+        <td>{{ container.state }}</td>
+        <td>
+            <a href="/delete_tracker_container/{{ tid }}/{{ container.cid }}">Untrack</a>
+            <!--<a href="/view_cargo/{{container.cid}}">View Container Items</a> -->
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+    <br>
+<br>
+    <center><button onClick="window.location.reload();">Refresh</button></center><br>
+    <center><a href="/tracker_list" class="btn btn-primary">Tracker List</a></center><br>
+    <center><a href="/" class="btn btn-primary">Main Page</a></center>
+</body>
+</html>

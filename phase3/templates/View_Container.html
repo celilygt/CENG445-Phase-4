@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Container Content</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<!-- {% if request.user.role == "admin" %}
+    <a href="/user_list" class="btn btn-primary"> User Management</a><br>
+    {% endif %} -->
+    <center><h1> Contained Cargos </h1></center>
+    <br>
+<table style="width:100%">
+    <thead class="thead-dark">
+    <tr>
+        <th>Cargo ID</th>
+        <th>Cargo Sender Name</th>
+        <th>Cargo Recipent</th>
+        <th>Cargo Recipent Address</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for cargo in cargos %}
+    <tr>
+        <td>{{ cargo.id }}</td>
+        <td>{{ cargo.sender_name }}</td>
+        <td>{{ cargo.recip_name }}</td>
+        <td>{{ cargo.recip_address }}</td>
+        <td>
+            <a href="/move_cargo/{{ cid }}/{{ cargo.id }}">Move Cargo</a>
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+    <center><button onClick="window.location.reload();">Refresh</button></center><br>
+    <center><a href="/container_list" class="btn btn-primary">Go to Container List</a></center><br>
+    <center><a href="/" class="btn btn-primary">Go to Main Page</a></center>
+</body>
+</html>

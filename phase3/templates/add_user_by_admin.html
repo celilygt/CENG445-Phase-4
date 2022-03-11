@@ -1,0 +1,74 @@
+<html>
+<style>
+    body {
+  background-color:#d4f3cf
+}
+    table, th, td {
+  border:1px solid black;
+}
+a:link, a:visited {
+  background-color: white;
+  color: black;
+  border: 2px solid green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: green;
+  color: white;
+}
+#cargo_table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #cargo_table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #cargo_table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #cargo_table tr:hover {
+        background-color: #ddd;
+    }
+
+    #cargo_table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+</style>
+<head><title>ADD</title></head>
+<body>
+<a href="/">Back</a>
+<form id = "cargo_table" method="POST" action="/register_by_admin">
+    <table border="1" cellspacing="0">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <tr>
+            <td>&nbsp;</td>
+            <td style="align: right;">
+                {% if operation == 'insert' %}
+                <input type="submit" name="insert" value="Create User"/>
+                {% else %}
+                <input type="hidden" name="pid" value="{{ pid }}"/>
+                <input type="submit" name="update" value="Update product"/>
+                <input type="submit" name="delete" value="Remove the product"/>
+                {% endif %}
+            </td>
+        </tr>
+        </table>
+</form>
+<center><button onClick="window.location.reload();">Refresh</button></center><br>
+</body>
+</html>

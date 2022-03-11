@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Tracker List</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<table style="width:100%">
+    <thead class="thead-dark">
+    <tr>
+        <th>Tracker ID</th>
+        <th>Description</th>
+        <th>Top</th>
+        <th>Left</th>
+        <th>Bottom</th>
+        <th>Right</th>
+        <th>Owner</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for tracker in trackers %}
+    <tr>
+        <td>{{ tracker.tid }}</td>
+        <td>{{ tracker.description }}</td>
+        <td>{{ tracker.top }}</td>
+        <td>{{ tracker.left }}</td>
+        <td>{{ tracker.bottom }}</td>
+        <td>{{ tracker.right }}</td>
+        <td>{{ tracker.owner }}</td>
+        <td>
+            <a href="/view_tracker/{{ tracker.tid }}"><span class="glyphicon glyphicon-pencil" >Track Objects </span></a>
+            <a href="/edit_tracker/{{ tracker.tid }}"><span class="glyphicon glyphicon-pencil" > Edit  </span></a>
+            <a href="/delete_tracker/{{ tracker.tid }}"> Delete  </a>
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<center><button onClick="window.location.reload();">Refresh</button></center><br>
+<center><a href="/create_tracker" class="btn btn-primary">Add New Tracker</a></center>
+<center><a href="/" class="btn btn-primary">Main Page</a></center>
+</body>
+</html>

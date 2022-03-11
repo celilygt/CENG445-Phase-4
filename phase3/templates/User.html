@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+  background-color:#d4f3cf
+}
+table, th, td {
+  border:2px solid black;
+}
+a:link, a:visited {
+  background-color: white;
+  color: black;
+  border: 2px solid green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: green;
+  color: white;
+}
+#cargo_table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #cargo_table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #cargo_table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #cargo_table tr:hover {
+        background-color: #ddd;
+    }
+
+    #cargo_table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    {% load static %}
+</head>
+<body>
+<table id = "cargo_table" style="width:100%">
+    <thead class="thead-dark">
+    <tr>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+            <a href="/delete_user/{{ user.id }}">Delete</a>
+            <a href="/update_role_form/{{user.id}}">Update Role</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<center><a href="/create_user_by_admin" class="btn btn-primary">Add New User</a></center>
+<br>
+<center><a href="/" class="btn btn-primary">Main Page</a></center>
+</body>
+</html>

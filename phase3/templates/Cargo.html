@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Cargo Records</title>
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<table style="width:100%">
+    <thead class="thead-dark">
+    <tr>
+        <th>Cargo ID</th>
+        <th>Cargo Sender Name</th>
+        <th>Cargo Recipent</th>
+        <th>Cargo Recipent Address</th>
+        <th>Container ID</th>
+        <th>Cargo State</th>
+        <th>Cargo Owner</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for cargo in cargos %}
+    <tr>
+        <td>{{ cargo.id }}</td>
+        <td>{{ cargo.sender_name }}</td>
+        <td>{{ cargo.recip_name }}</td>
+        <td>{{ cargo.recip_address }}</td>
+        <td>{{ cargo.Container.cid }}</td>
+        <td>{{ cargo.state }}</td>
+        <td>{{ cargo.owner }}</td>
+        <td>
+            <a href="/delete_cargo/{{ cargo.id }}">Delete</a>
+            {% if cargo.state != "Delivered" %}
+                {% if cargo.Container.type == "Front-Office" %}
+                    <a href="/unload_cargo/{{ cargo.id }}">Unload Cargo</a>
+                {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<center><button onClick="window.location.reload();">Refresh</button></center><br>
+<center><a href="/create_cargo" class="btn btn-primary">Add New Cargo Item</a></center><br>
+<center><a href="/" class="btn btn-primary">Main Page</a></center>
+</body>
+</html>
